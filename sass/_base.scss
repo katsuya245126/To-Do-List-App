@@ -21,7 +21,21 @@ html, body {
     color: $default-font-color;
     width: 100%;
     min-height: 100%;
-    @include mp(768px) {
+    @include mq(768px) {
         font-size: 22px;
     }
+}
+
+body {
+    padding: 20px;
+    background-color: $background-color;
+}
+
+section {
+    background-color: $container-bgcolor;
+    width: 90%;
+    max-width: 700px;
+    margin: auto;
+    border: 1px solid $container-bordercolor;
+    border-radius: 10px;
 }
