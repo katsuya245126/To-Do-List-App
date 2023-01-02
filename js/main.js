@@ -22,8 +22,8 @@ function initApp() {
 function refreshThePage() {
     clearListDisplay();
     renderList();
-    // clearItemEntryField();
-    // setFocusOnItemEntry();
+    clearItemEntryField();
+    setFocusOnItemEntry();
 }
 
 function clearListDisplay() {
@@ -73,4 +73,12 @@ function addClickListenerToCheckbox(check) {
             refreshThePage();
         }, 1000)
     })
+}
+
+function clearItemEntryField() {
+    document.getElementById("newItem").value = "";
+}
+
+function setFocusOnItemEntry() {
+    document.getElementById("newItem").focus();
 }
