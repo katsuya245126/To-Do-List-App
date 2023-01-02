@@ -21,7 +21,7 @@ function initApp() {
 
 function refreshThePage() {
     clearListDisplay();
-    // renderList();
+    renderList();
     // clearItemEntryField();
     // setFocusOnItemEntry();
 }
@@ -38,4 +38,39 @@ function deleteContents(parentElement) {
         parentElement.removeChild(child);
         child = parentElement.lastElementChild;
     }
+}
+
+function renderList() {
+    const list = toDoList.getList();
+
+    list.forEach(item => {
+        buildListItem(item);
+    })
+}
+
+function buildListItem(item) {
+    const div = document.createElement("div");
+    div.className = "item";
+    const checkBox = document.createElement("input");
+    checkBox.type = "checkbox";
+    checkBox.id = item.getId();
+    checkBox.tabIndex = 0;
+    addClickListenerToCheckbox(check);
+    const label = document.createElement("label");
+    label.htmlFor = item.getId();
+    label.textContent = item.getItem();
+    div.appendChild(check);
+    div.appendChild(label);
+    const container = document.getElementById("listItems");
+    container.appendChild(div);
+}
+
+function addClickListenerToCheckbox(check) {
+    checkbox.addEventListener("click", (event) => {
+        toDoList.removeItemFromList(checkbox.id);
+        // TODO remove from persistent data
+        setTimeout(() => {
+            refreshThePage();
+        }, 1000)
+    })
 }
