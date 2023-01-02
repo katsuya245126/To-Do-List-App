@@ -18,9 +18,21 @@ function initApp() {
         processSubmission();
     });
 
+    const clearItems = document.getElementById("clearItems");
+    clearItems.addEventListener("click", (event) => {
+        const list = toDoList.getList();
+        if (list.length) {
+            const confirmed = confirm("Are you sure you want to clear the entire list?");
+            if (confirmed) {
+                toDoList.clearList();
+                // TODO update persistent data
+                refreshThePage();
+            }
+        }
+    });
+
     // Procedural
     // Load list object
-    // Refresh the page
     refreshThePage();
 }
 
