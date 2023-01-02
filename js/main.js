@@ -9,3 +9,19 @@ document.addEventListener("readystatechange", (event) => {
         initApp();
     }
 })
+
+function initApp() {
+    // Add listeners
+
+    // Procedural
+    // Load list object
+    // Refresh the page
+    refreshThePage();
+}
+
+function refreshThePage() {
+    clearListDisplay();
+    // renderList();
+    // clearItemEntryField();
+    // setFocusOnItemEntry();
+}
