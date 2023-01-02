@@ -25,3 +25,17 @@ function refreshThePage() {
     // clearItemEntryField();
     // setFocusOnItemEntry();
 }
+
+function clearListDisplay() {
+    const parentElement = document.getElementById("listItems");
+    deleteContents(parentElement);
+}
+
+function deleteContents(parentElement) {
+    let child = parentElement.lastElementChild;
+
+    while (child) {
+        parentElement.removeChild(child);
+        child = parentElement.lastElementChild;
+    }
+}
