@@ -60,17 +60,17 @@ function buildListItem(item) {
     checkBox.type = "checkbox";
     checkBox.id = item.getId();
     checkBox.tabIndex = 0;
-    addClickListenerToCheckbox(check);
+    addClickListenerToCheckbox(checkBox);
     const label = document.createElement("label");
     label.htmlFor = item.getId();
     label.textContent = item.getItem();
-    div.appendChild(check);
+    div.appendChild(checkBox);
     div.appendChild(label);
     const container = document.getElementById("listItems");
     container.appendChild(div);
 }
 
-function addClickListenerToCheckbox(check) {
+function addClickListenerToCheckbox(checkbox) {
     checkbox.addEventListener("click", (event) => {
         toDoList.removeItemFromList(checkbox.id);
         // TODO remove from persistent data
@@ -86,4 +86,35 @@ function clearItemEntryField() {
 
 function setFocusOnItemEntry() {
     document.getElementById("newItem").focus();
+}
+
+function processSubmission() {
+    const newEntryText = getNewEntry();
+    if(!newEntryText.length) return;
+
+    const nextItemId = calcNextItemId();
+    const toDoItem = createNewItem(nextItemId, newEntryText);
+    toDoList.addItemToList(toDoItem);
+    // TODO update persistent data
+    refreshThePage();
+}
+
+function getNewEntry() {
+    return document.getElementById("newItem").value.trim();
+}
+
+function calcNextItemId() {
+    let nextItemId = 1;
+    const list = toDoList.getList();
+    if (list.length > 0) {
+        nextItemId = list[list.length - 1].getId() + 1;
+    }
+    return nextItemId;
+}
+
+function createNewItem(id, text) {
+    const toDo = new ToDoItem();
+    toDo.setId(id);
+    toDo.setItem(text);
+    return toDo;
 }
