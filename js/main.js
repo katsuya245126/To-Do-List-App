@@ -12,6 +12,11 @@ document.addEventListener("readystatechange", (event) => {
 
 function initApp() {
     // Add listeners
+    const itemEntryForm = document.getElementById("itemEntryForm");
+    itemEntryForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        processSubmission();
+    });
 
     // Procedural
     // Load list object
